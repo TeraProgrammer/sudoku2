@@ -29,6 +29,58 @@ public class SudokuBoard {
       }
    }
    
+   public boolean isValid() {
+      Set<Integer> validValues = new HashSet();
+      for (int i = 0; i < board.length + 1; i++) {
+         validValues.add(i);
+      }
+      return (checkInvalidChar(validValues) && checkCol(validValues)) && (miniSquare(validValues) && checkRow(validValues));
+   }
+   
+   private boolean checkInvalidChar(Set<Integer> valid) {
+      for (int r = 0; r < board.length; r++) {
+         for (int c = 0; c < board[r].length; c++) {
+            if (!valid.contains(board[r][c])) {
+               return false;
+            }
+         }
+      }
+      
+      return true;
+   }
+   
+   private boolean checkRow(Set<Integer> valid) {
+      for (int r = 0; r < board.length; r++) {
+         for (int c = 0; c < board[r].length; c++) {
+            if (board[r][c] != 0 && ) {
+               
+            }
+         }
+      }
+      
+      return true;
+   }
+   
+   private boolean checkCol(Set<Integer> valid) {
+      
+   }
+   
+   private boolean checkSquares(Set<Integer> valid) {
+   
+   }
+   
+   private int[][] miniSquare(int spot) {
+      for(int r = 0; r < 3; r++) {
+         for(int c = 0; c < 3; c++) {
+            // whoa - wild! This took me a solid hour to figure out (at least)
+            // This translates between the "spot" in the 9x9 Sudoku board
+            // and a new mini square of 3x3
+            mini[r][c] = board[(spot - 1) / 3 * 3 + r][(spot - 1) % 3 * 3 + c];
+         }
+      }
+      return mini;
+   }
+   
    public String toString() {
       String build = " -----------------\n";
       for(int r = 0; r < board.length; r++) {
